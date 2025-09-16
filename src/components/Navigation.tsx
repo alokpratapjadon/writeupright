@@ -68,7 +68,7 @@ export function Navigation() {
               whileHover={{ scale: 1.05 }}
             >
               <img 
-                src="/src/components/Assets/WUR_Logo.png" 
+                src="/WUR_Logo.png" 
                 alt="WUR Logo" 
                 className="w-25 h-10 object-contain"
                 style={{
