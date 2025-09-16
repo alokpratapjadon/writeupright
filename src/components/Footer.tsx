@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function Footer() {
   const footerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const initAnimations = async () => {
@@ -60,6 +61,17 @@ export function Footer() {
     };
 
     initAnimations();
+
+    // Detect theme changes
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    // Initial check
+    setIsDark(document.documentElement.classList.contains('dark'));
+
+    return () => observer.disconnect();
   }, []);
 
   const currentYear = new Date().getFullYear();
@@ -96,7 +108,11 @@ export function Footer() {
               <img 
                 src="/src/components/Assets/WUR_Logo.png" 
                 alt="WUR Logo" 
-                className="w-28 h-10 object-contain filter brightness-125"
+                className="w-28 h-10 object-contain"
+                style={{
+                  filter: isDark ? 'brightness(1.5)' : 'brightness(0.5)',
+                  transition: 'filter 0.3s ease',
+                }}
               />
               {/* Removed extra text from logo */}
               {/* <span className="text-3xl">Technos</span> */}

@@ -70,7 +70,7 @@ export function Navigation() {
               <img 
                 src="/src/components/Assets/WUR_Logo.png" 
                 alt="WUR Logo" 
-                className="w-22 h-10 object-contain"
+                className="w-25 h-10 object-contain"
                 style={{
                   filter: isDark ? 'brightness(1.5)' : 'brightness(0.5)',
                   transition: 'filter 0.3s ease',
